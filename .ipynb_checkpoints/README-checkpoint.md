@@ -8,7 +8,9 @@
 
 *** Author: Kevin Yu
 
-*** Update Time: 2020/07/21
+*** Release date: 2020/07/21
+
+*** Update date: 2020/07/21
 
 *** Website: www.hikariai.net
 
