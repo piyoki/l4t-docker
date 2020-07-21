@@ -22,8 +22,9 @@ Table of Contents
 -----------------
 
 * [Installation](#installation)
-* [Run](#run)
-
+* [Running Guide](#running-guide)
+* [Available Images](#available-images)
+* [License](#license)
 
 Installation
 ------------
@@ -32,7 +33,9 @@ Installation
 
 ```bash
 $ sudo wget -qO- https://get.docker.com/ | sh
+$ sudo groupadd docker
 $ sudo usermod -aG docker $USER
+$ newgrp docker 
 $ sudo systemctl enable docker
 $ sudo systemctl status docker
 ```
@@ -43,15 +46,16 @@ $ sudo systemctl status docker
 $ sudo apt install -y nvidia-docker2
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
+$ docker info | grep nvidia
 ```
 
 ##### Verify Nvidia-Runtime
 
 ```bash
-docker run -it --runtime nvidia hikariai/l4t-base-r32.4.3:latest bash 
-cd samples/1_Utilities/deviceQuery
-make
-./deviceQuery
+$ docker run -it --runtime nvidia hikariai/l4t-base-r32.4.3:latest bash 
+$ cd samples/1_Utilities/deviceQuery
+$ make
+$ ./deviceQuery
 ```
 
 **Notes**: 
@@ -99,6 +103,14 @@ deviceQuery, CUDA Driver = CUDART, CUDA Driver Version = 10.2, CUDA Runtime Vers
 Result = PASS
 ```
 
+To exit the container:
+
+```bash
+$ exit
+```
+
+<a name="installation"></a>
+
 ##### Change Docker Image Path (Optional)
 
 ```bash
@@ -117,26 +129,62 @@ $ sudo nano /etc/docker/daemon.json
 ```bash
 $ sudo systemctl start docker
 $ sudo systemctl status docker
-$ sudo docker info
+$ docker info | grep Root
 ```
 
+Running Guide
+-------------
 
-Allow external applications to connect to the host’s X display:
+Run containers without display (Applications that do not require an attached screen)
 ```bash
-xhost +
+$ docker run -it --net=host --runtime nvidia --name l4t hikariai/l4t-base-r32.4.3 bash
 ```
 
-Run the docker container using the docker command (Require access to X server)
+Allow external applications to connect to the host’s X display (Require access to X server)
 ```bash
-export DISPLAY=:0
-sudo xhost +si:localuser:root
-sudo docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix nvcr.io/nvidia/l4t-base:r32.3.1
+$ export DISPLAY=:0
+$ sudo xhost +si:localuser:root
+$ docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base:r32.4.3 bash
 ```
 
-**Flags Options Explained:**
+Run containers with addtional devices (cameras):
+```bash
+$ export DISPLAY=:0
+$ sudo xhost +si:localuser:root
+$ docker run -it --rm --net=host --runtime nvidia  -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base-r32.4.3 bash
+```
 
-- -it means run in interactive mode
-- --rm will delete the container when finished
-- --runtime nvidia will use the NVIDIA container runtime while running the l4t-base container
-- -v is the mounting directory, and used to mount host’s X11 display in the container filesystem to render output videos
-- r32.3.1 is the tag for the image corresponding to the l4t release 32.3.1
+Run containers in background
+```bash
+$ docker run -dit --net=host --runtime nvidia --name l4t hikariai/l4t-base-r32.4.3 bash
+# access the container
+$ docker exec -it l4t bash
+```
+
+<a name="running-guide"></a>
+
+##### Flags Options Explained:
+
+- -d refers to running containers in detach mode (background mode) 
+- -it refers to running in interactive mode
+- --rm refers to deleting the container when finished
+- --runtime nvidia refers to using the NVIDIA container runtime while running the l4t-base container
+- -v refers to the mounting directory, and used to mount host’s X11 display in the container filesystem to render output videos
+- --name refers to the specification of the container name
+
+Available Images
+----------------
+
+[**L4t-base**]() -- Runnning CUDA Samples on Jetson Devices
+
+[**L4t-cv2**]() -- L4t image with OpenCV support
+
+[**L4t-trt**]() -- Transfer Learning Toolkit deployed on Jetson Platform for Object Detection
+
+
+License
+-------
+
+[MIT License](https://github.com/yqlbu/l4t-docker/blob/master/LICENSE)
+
+<a name="license"></a>
