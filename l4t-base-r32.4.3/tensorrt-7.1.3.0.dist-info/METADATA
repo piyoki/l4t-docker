@@ -1,0 +1,17 @@
+Metadata-Version: 2.1
+Name: tensorrt
+Version: 7.1.3.0
+Summary: A high performance deep learning inference library
+Home-page: UNKNOWN
+Author: NVIDIA
+License: NVIDIA Software License
+Platform: UNKNOWN
+Classifier: Intended Audience :: Developers
+Classifier: Programming Language :: Python :: 3
+Provides-Extra: numpy
+Provides-Extra: numpy
+Requires-Dist: numpy; extra == 'numpy'
+
+A high performance deep learning inference library
+
+
