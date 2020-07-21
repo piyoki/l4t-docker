@@ -1,1 +1,0 @@
-The l4t-ml-dev docker image contains TensorFlow, PyTorch, JupyterLab, and other popular ML and data science frameworks such as scikit-learn, scipy, and pandas pre-installed in a Python 3.6 environment. This container is for the JetPack 4.3+ Developer Preview release (L4T R32.4.2) and Jetson Nano, TX1/TX2, Xavier NX, and AGX Xavier.
