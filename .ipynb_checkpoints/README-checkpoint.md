@@ -14,7 +14,7 @@
 
 This repo is a docker image hub that contains multifunctional containers tailored to the NVIDIA Jetson Platform (ARMv8) running Ubuntu 18.04 L4T. As for now, all the containers listed in this repo are only available for JetPack 4.4+, and built based on the official L4T docker image provided by [NVIDIA GPU Cloud (NGC)](https://ngc.nvidia.com/).
 
-With [NVIDIA Docker Runtime](https://developer.nvidia.com/nvidia-container-runtime), applications rely on CUDA are able to run with Docker Engine.
+With [NVIDIA Docker Runtime](https://developer.nvidia.com/nvidia-container-runtime), applications relied on CUDA are able to run with Docker Engine.
 
 The NVIDIA runtime enables graphics and video processing applications such as DeepStream to be run in containers on the Jetson platform. The purpose of this document is to provide users with steps on getting started with running Docker containers on Jetson using the NVIDIA runtime. The beta supports Jetson AGX Xavier, Jetson TX2 series, Jetson TX1, and Jetson Nano devices. For more information, you may visit the site [HERE](https://github.com/NVIDIA/nvidia-docker/wiki/NVIDIA-Container-Runtime-on-Jetson).
 
