@@ -8,13 +8,13 @@
 
 *** Author: Kevin Yu
 
-*** Release date: 2020/07/21
+*** Release date: 2020/07/29
 
 *** Update Time: 2020/07/29
 
 *** Website: www.hikariai.net
 
-The l4t-cv2 docker image enables a CV2 CUDA-compiled environment for further AI  applications development. This container is compatible with Jetson Nano, TX1/TX2, Xavier NX, and AGX Xavier with the latest JetPack 4.4(L4T R32.4.3) Release.
+The l4t-tlt docker image integrates the [Transfer Learning ToolKit](https://developer.nvidia.com/transfer-learning-toolkit) developed by NVIDIA with CUDA support. It may help you quickly run inference based on the custom-trained SSD model on the Jetson Devices. This container is compatible with Jetson Nano, TX1/TX2, Xavier NX, and AGX Xavier with the latest JetPack 4.4(L4T R32.4.3) Release.
 
 Package Versions
 ----------------
@@ -22,6 +22,11 @@ Package Versions
 * CUDA 10.2
 * TensorRT 7.1.3
 * OpenCV 4.1.1
+* TensorRT-OSS 7.1.3
+* Tensorflow 1.15
+* Pycuda 2019.1.2
+* jupyterlab 2.2
+* ipykernel 5.3.3
 
 Suported Architecture
 ---------------------
@@ -43,36 +48,20 @@ Application Setup
 Use the Pre-Built Image from DockerHub
 
 ```bash
-$ docker pull l4t-cv2-r44.4.1
+$ docker pull hikariai/l4t-tlt-r44.7.1:nano
 ```
 
 Usage
 -----
 
-Run the container without display (Applications that do not require an attached screen)
+Run the container
 
 ```bash
-$ docker run -it --runtime nvidia l4t-cv2-r44.4.1:nano bash 
+$ sudo docker run --name tlt -it -p 8888:8888 hikariai/l4t-tlt-r44.7.1:nano bash
+$ jupyter lab --ip 0.0.0.0 --port 8888 --allow-root
 ```
 
-Verify the OpenCV version
-
-```bash
-$ python3 -c "import cv2 ; print(cv2.__version__)"
-```
-
-Run the container with display (Require access to X server)
-
-```bash
-$ export DISPLAY=:0
-$ sudo xhost +si:localuser:root
-$ docker run -it --rm --net=host --runtime nvidia --device /dev/video0:/dev/video0 -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-cv2-r44.4.1:nano bash
-$ python3 base.py
-```
-
-**Notes:**
-
-- The container will open /dev/video0 USB WebCam by default, and stream the content in 640*480 resolution.
+Open up a new browser and visit **http://localhost:8888**, and you should be able to log into JupyterLab with the token displayed in your console.
 
 Parameters
 ----------
@@ -91,9 +80,9 @@ Parameters
 Version Tags
 ------------
 
-|       NAME      |     VERSION    |
-|:---------------:|:--------------:|
-| l4t-cv2-r44.4.1 | latest (4.1.1) |
+|           NAME           |    VERSION   |
+|:------------------------:|:------------:|
+| hikariai/l4t-tlt-r44.7.1 | latest (7.1) |
 
 License
 -------
