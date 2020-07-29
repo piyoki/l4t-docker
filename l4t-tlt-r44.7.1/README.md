@@ -61,7 +61,12 @@ $ sudo docker run --name tlt -it -p 8888:8888 hikariai/l4t-tlt-r44.7.1:nano bash
 $ jupyter lab --ip 0.0.0.0 --port 8888 --allow-root
 ```
 
-Open up a new browser and visit **http://localhost:8888**, and you should be able to log into JupyterLab with the token displayed in your console.
+**Notes:**
+
+- Open up a new browser and visit **http://localhost:8888**, and you should be able to log into JupyterLab with the token displayed in your console.
+- The detailed usage instruction (including all the setup steps) of the tool is available in the notebook
+
+
 
 Parameters
 ----------
