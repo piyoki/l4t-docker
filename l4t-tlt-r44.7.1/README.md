@@ -1,4 +1,4 @@
-# l4t-cv2
+# l4t-tlt
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 ![](https://img.shields.io/static/v1?label=Device&message=Jetson(ARMv8)&color=orange)
