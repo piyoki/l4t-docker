@@ -181,11 +181,11 @@ $ docker exec -it l4t bash
 Available Images
 ----------------
 
-[**L4t-base**](https://github.com/yqlbu/l4t-docker/tree/master/l4t-base-r32.4.3) -- Runnning CUDA Samples on Jetson Devices
+[**l4t-base**](https://github.com/yqlbu/l4t-docker/tree/master/l4t-base-r32.4.3) -- Runnning CUDA Samples on Jetson Devices
 
-[**L4t-cv2**]() -- L4t image with OpenCV support
+[**l4t-cv2**]() -- L4T image with OpenCV support
 
-[**L4t-trt**]() -- Transfer Learning Toolkit deployed on Jetson Platform for Object Detection
+[**l4t-tlt**]() -- Transfer Learning Toolkit deployed on Jetson Platform for Object Detection
 
 
 License

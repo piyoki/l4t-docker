@@ -19,14 +19,8 @@ The l4t-base docker image is used for testing the CUDA environment with NVIDIA D
 Package Versions
 ----------------
 
-* TensorFlow 1.15
-* PyTorch v1.5.0
-* onnx 1.6.0
-* numpy 1.18.2
-* pandas 1.0.3
-* scipy 1.4.1
-* scikit-learn 0.22.2
-* JupyterLab 2.0.1
+* CUDA 10.2
+* TensorRT 7.1.3
 
 Suported Architecture
 ---------------------
@@ -65,7 +59,7 @@ Run the container with display (Require access to X server)
 ```bash
 $ export DISPLAY=:0
 $ sudo xhost +si:localuser:root
-$ docker run -it --rm --net=host --runtime nvidia --device /dev/video0:/dev/video0 -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base-r32.4.3 bash
+$ docker run -it --rm --net=host --runtime nvidia -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base-r32.4.3 bash
 $ cd samples/5_Simulations/nbody
 $ make
 $ ./nbody

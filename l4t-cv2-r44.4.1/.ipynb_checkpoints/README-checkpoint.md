@@ -1,4 +1,4 @@
-# l4t-base
+# l4t-cv2
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-red.svg)](https://opensource.org/licenses/MIT)
 ![](https://img.shields.io/static/v1?label=Device&message=Jetson(ARMv8)&color=orange)
@@ -14,32 +14,36 @@
 
 *** Website: www.hikariai.net
 
-The l4t-base docker image is used for testing the CUDA environment with NVIDIA Docker Runtime. It contains the cuda samples for testing. This container is compatible with Jetson Nano, TX1/TX2, Xavier NX, and AGX Xavier with the latest JetPack 4.4(L4T R32.4.3) Release.
+The l4t-cv2 docker image enables a CV2 CUDA-compiled environment for further AI  applications development. This container is compatible with Jetson Nano, TX1/TX2, Xavier NX, and AGX Xavier with the latest JetPack 4.4(L4T R32.4.3) Release.
 
 Package Versions
 ----------------
 
 * CUDA 10.2
 * TensorRT 7.1.3
+* OpenCV 4.1.1
 
 Suported Architecture
 ---------------------
 
 ARMv8 Nvidia Jetson Platform
 
+Supported Device
+---------------------
+
+NVIDIA Jetson Nano
+
+**Notes:** 
+
+- This image also works with Jetson Xavier but it will be only using 4 CPU cores.
+
 Application Setup
 -----------------
-
-Build Image Manually
-
-```bash
-$ docker build -t [TAG] .
-```
 
 Use the Pre-Built Image from DockerHub
 
 ```bash
-$ docker pull hikariai/l4t-base-r32.4.3
+$ docker pull l4t-cv2-r44.4.1
 ```
 
 Usage
@@ -48,10 +52,13 @@ Usage
 Run the container without display (Applications that do not require an attached screen)
 
 ```bash
-$ docker run -it --runtime nvidia hikariai/l4t-base-r32.4.3:latest bash 
-$ cd samples/1_Utilities/deviceQuery
-$ make
-$ ./deviceQuery
+$ docker run -it --runtime nvidia l4t-cv2-r44.4.1:nano bash 
+```
+
+Verify the OpenCV version
+
+```bash
+$ python3 -c "import cv2 ; print(cv2.__version__)"
 ```
 
 Run the container with display (Require access to X server)
@@ -59,11 +66,13 @@ Run the container with display (Require access to X server)
 ```bash
 $ export DISPLAY=:0
 $ sudo xhost +si:localuser:root
-$ docker run -it --rm --net=host --runtime nvidia -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base-r32.4.3 bash
-$ cd samples/5_Simulations/nbody
-$ make
-$ ./nbody
+$ docker run -it --rm --net=host --runtime nvidia --device /dev/video0:/dev/video0 -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-cv2-r44.4.1:nano bash
+$ python3 base.py
 ```
+
+**Notes:**
+
+- The container will open /dev/video0 USB WebCam by default, and stream the content in 640*480 resolution.
 
 Parameters
 ----------
@@ -81,9 +90,9 @@ Parameters
 Version Tags
 ------------
 
-|            NAME           | VERSION |
-|:-------------------------:|:-------:|
-| hikariai/l4t-base-r32.4.3 |  latest |
+|       NAME      |     VERSION    |
+|:---------------:|:--------------:|
+| l4t-cv2-r44.4.1 | latest (4.1.1) |
 
 License
 -------
