@@ -154,6 +154,9 @@ Run the container with addtional devices (cameras):
 $ export DISPLAY=:0
 $ sudo xhost +si:localuser:root
 $ docker run -it --rm --net=host --runtime nvidia --device /dev/video0:/dev/video0 -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base-r32.4.3 bash
+$ cd samples/5_Simulations/nbody
+$ make
+$ ./n
 ```
 
 Run containers in background
