@@ -10,7 +10,7 @@
 
 *** Release date: 2020/07/21
 
-*** Update date: 2020/07/21
+*** Update date: 2020/07/29
 
 *** Website: www.hikariai.net
 
@@ -156,7 +156,7 @@ $ sudo xhost +si:localuser:root
 $ docker run -it --rm --net=host --runtime nvidia --device /dev/video0:/dev/video0 -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base-r32.4.3 bash
 $ cd samples/5_Simulations/nbody
 $ make
-$ ./n
+$ ./nbody
 ```
 
 Run containers in background
