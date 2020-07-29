@@ -51,6 +51,12 @@ Use the Pre-Built Image from DockerHub
 $ docker pull hikariai/l4t-tlt-r44.7.1:nano
 ```
 
+Use the Pre-Built Image from AliCloud (Users from China ONLY)
+
+```bash
+$ docker run --name tlt -it --runtime nvidia -p 3001:8888 registry.cn-hangzhou.aliyuncs.com/hikariai/l4t-cv2-r44.4.1:latest bash
+```
+
 Usage
 -----
 
