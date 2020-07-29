@@ -86,7 +86,7 @@ Parameters
 |     -v    | add a mounting directory from the host to access and save files inside or outside the container |
 |   --name  |                                specify the name of the container                                |
 |  --device |                                map a host device to the container                               |
-|     -p    |                               map the container port to host port                               |
+|     -p    |                             map the container port to the host port                             |
 
 Version Tags
 ------------
