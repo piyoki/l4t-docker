@@ -57,13 +57,13 @@ Usage
 Run the container
 
 ```bash
-$ sudo docker run --name tlt -it -p 8888:8888 hikariai/l4t-tlt-r44.7.1:nano bash
+$ sudo docker run --name tlt -it -p 3001:8888 hikariai/l4t-tlt-r44.7.1:nano bash
 $ jupyter lab --ip 0.0.0.0 --port 8888 --allow-root
 ```
 
 **Notes:**
 
-- Open up a new browser and visit **http://localhost:8888**, and you should be able to log into JupyterLab with the token displayed in your console.
+- Open up a new browser and visit **http://localhost:3001**, and you should be able to log into JupyterLab with the token displayed in your console.
 - The detailed usage instruction of the tool, including all the setup steps, is available in the notebook
 
 
