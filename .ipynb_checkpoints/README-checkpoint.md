@@ -137,7 +137,7 @@ $ docker info | grep Root
 Running Guide
 -------------
 
-Run containers without display (Applications that do not require an attached screen)
+Run the container without display (Applications that do not require an attached screen)
 ```bash
 $ docker run -it --net=host --runtime nvidia --name l4t hikariai/l4t-base-r32.4.3 bash
 ```
@@ -149,7 +149,7 @@ $ sudo xhost +si:localuser:root
 $ docker run -it --rm --net=host --runtime nvidia -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base:r32.4.3 bash
 ```
 
-Run containers with addtional devices (cameras):
+Run the container with addtional devices (cameras):
 ```bash
 $ export DISPLAY=:0
 $ sudo xhost +si:localuser:root
@@ -167,7 +167,7 @@ $ docker exec -it l4t bash
 
 ##### Flags Options Explained:
 
-- -d refers to running containers in detach mode (background mode) 
+- -d refers to running the container in detached mode (background mode) 
 - -it refers to running in interactive mode
 - --rm refers to deleting the container when finished
 - --runtime nvidia refers to using the NVIDIA container runtime while running the l4t-base container

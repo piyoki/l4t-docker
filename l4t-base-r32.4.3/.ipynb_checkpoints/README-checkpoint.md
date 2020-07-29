@@ -36,11 +36,48 @@ Application Setup
 
 Build Image Manually
 
+```bash
+$ docker build -t [TAG] .
+```
+
+Use the Pre-Built Image from DockerHub
+
+```bash
+$ docker pull hikariai/l4t-base-r32.4.3
+```
+
 Usage
 -----
 
+Run the container without display (Applications that do not require an attached screen)
+
+```bash
+$ docker run -it --runtime nvidia hikariai/l4t-base-r32.4.3:latest bash 
+$ cd samples/1_Utilities/deviceQuery
+$ make
+$ ./deviceQuery
+```
+
+Run the container with display (Require access to X server)
+
+```bash
+$ export DISPLAY=:0
+$ sudo xhost +si:localuser:root
+$ docker run -it --rm --net=host --runtime nvidia -e DISPLAY=$DISPLAY -v /tmp/.X11-unix/:/tmp/.X11-unix hikariai/l4t-base:r32.4.3 bash
+```
+
 Parameters
 ----------
+
+|    FLAG   |                                              USAGE                                              |
+|:---------:|:-----------------------------------------------------------------------------------------------:|
+|     -d    |                       run the container in detached mode (background mode)                      |
+|    -it    |                              run the container in interactive mode                              |
+|    --rm   |                        delete the container when it finishes its process                        |
+| --runtime |                use a specify runtime (NVIDIA runtime) while running the container               |
+|     -v    | add a mounting directory from the host to access and save files inside or outside the container |
+|   --name  |                                specify the name of the container                                |
+|  --device |                                map a host device to the container                               |
 
 Version Tags
 ------------
