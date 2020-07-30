@@ -63,7 +63,7 @@ Usage
 Run the container
 
 ```bash
-$ sudo docker run --name tlt -it --runtime nvidia -p 3001:8888 registry.cn-hangzhou.aliyuncs.com/hikariai/l4t-tlt-r44.7.1:latest bash
+$ sudo docker run --name tlt -it --runtime nvidia -p 3001:8888 hikariai/l4t-tlt-r44.7.1:nano bash
 $ jupyter lab --ip 0.0.0.0 --port 8888 --allow-root
 ```
 
