@@ -51,7 +51,7 @@ $ sudo systemctl restart docker
 $ docker info | grep nvidia
 ```
 
-##### Verify Nvidia-Runtime
+##### Verify NVIDIA-Runtime
 
 ```bash
 $ docker run -it --runtime nvidia hikariai/l4t-base-r32.4.3:latest bash 
