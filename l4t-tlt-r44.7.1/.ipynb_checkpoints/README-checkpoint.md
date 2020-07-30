@@ -54,7 +54,7 @@ $ docker pull hikariai/l4t-tlt-r44.7.1:nano
 Use the Pre-Built Image from AliCloud (Users from China ONLY)
 
 ```bash
-$ docker run --name tlt -it --runtime nvidia -p 3001:8888 registry.cn-hangzhou.aliyuncs.com/hikariai/l4t-tlt-r44.7.1 bash
+$ docker pull registry.cn-hangzhou.aliyuncs.com/hikariai/l4t-tlt-r44.7.1:latest
 ```
 
 Usage
@@ -63,7 +63,14 @@ Usage
 Run the container
 
 ```bash
-$ sudo docker run --name tlt -it --runtime nvidia -p 3001:8888 hikariai/l4t-tlt-r44.7.1:nano bash
+$ sudo docker run --name tlt -it --runtime nvidia -p 3001:8888 registry.cn-hangzhou.aliyuncs.com/hikariai/l4t-tlt-r44.7.1:latest bash
+$ jupyter lab --ip 0.0.0.0 --port 8888 --allow-root
+```
+
+For users from China ONLY
+
+```bash
+$ docker run --name tlt -it --runtime nvidia -p 3001:8888 registry.cn-hangzhou.aliyuncs.com/hikariai/l4t-tlt-r44.7.1:latest bash
 $ jupyter lab --ip 0.0.0.0 --port 8888 --allow-root
 ```
 
